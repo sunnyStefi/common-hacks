@@ -3,9 +3,15 @@ include .env #source .env on terminal
 #to put in order and comment better
 .PHONY: push, interaction
 
+# GIT section
+
+set-remote:
+	git remote remove origin
+	git remote add origin $(ORIGIN)
+
 push:
 	git add .
-	git commit -m "init"
+	git commit -m "added set remote to makefile"
 	git push origin master
 
 
