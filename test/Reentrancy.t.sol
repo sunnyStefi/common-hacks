@@ -2,13 +2,13 @@
 pragma solidity ^0.8.18;
 
 import {Test, console2} from "forge-std/Test.sol";
-import {InitMe} from "../src/InitMe.sol";
+import {Reentrancy} from "../src/Reentrancy.sol";
 
-contract InitMeTest is Test {
-    InitMe public counter;
+contract ReentrancyTest is Test {
+    Reentrancy public victim;
 
     function setUp() public {
-        counter = new InitMe();
+        victim = new Reentrancy();
     }
 
     function test_() public {}

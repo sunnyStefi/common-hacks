@@ -2,9 +2,9 @@
 pragma solidity ^0.8.18;
 
 import {Script, console2} from "forge-std/Script.sol";
-import {InitMe} from "../src/InitMe.sol";
+import {Reentrancy} from "../src/Reentrancy.sol";
 
-contract CounterScript is Script {
+contract ReentrancyScript is Script {
     function setUp() public {}
 
     function run() public {
