@@ -1,6 +1,6 @@
 # Solidity by example Hacks
 
-Playground for all (15) Hacks. 
+Playground for all (92) Slither Detection Hacks. 
 Each attacked vulnerability is reproduced inside its contract name.
 
 In test folder, the attack simulation takes place.

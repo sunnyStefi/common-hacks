@@ -10,5 +10,5 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "set victim contract reentrancy attack"
+	git commit -m "hacks 25, 45"
 	git push origin master
