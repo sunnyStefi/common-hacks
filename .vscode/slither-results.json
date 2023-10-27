@@ -1,0 +1,1452 @@
+[
+	{
+		"elements": [
+			{
+				"type": "contract",
+				"name": "ReentrancyAttacker",
+				"source_mapping": {
+					"start": 1771,
+					"length": 754,
+					"filename_relative": "src/25_ReentrancyEther.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+					"filename_short": "src/25_ReentrancyEther.sol",
+					"is_dependency": false,
+					"lines": [
+						56,
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68,
+						69,
+						70,
+						71,
+						72,
+						73,
+						74,
+						75,
+						76,
+						77,
+						78,
+						79,
+						80
+					],
+					"starting_column": 1,
+					"ending_column": 2,
+					"_ext_source_hash": "b69833fb10aebf6de13cd858f8d59550"
+				}
+			},
+			{
+				"type": "contract",
+				"name": "ReentrancyAttacker",
+				"source_mapping": {
+					"start": 1516,
+					"length": 626,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68,
+						69,
+						70,
+						71,
+						72,
+						73,
+						74,
+						75,
+						76,
+						77,
+						78,
+						79
+					],
+					"starting_column": 1,
+					"ending_column": 2,
+					"_ext_source_hash": "6824140a26a947c530387dad1ad923c5"
+				}
+			}
+		],
+		"description": "ReentrancyAttacker is re-used:\n\t- ReentrancyAttacker (src/25_ReentrancyEther.sol#56-80)\n\t- ReentrancyAttacker (src/45_ReentrancyCross.sol#57-79)\n",
+		"markdown": "ReentrancyAttacker is re-used:\n\t- [ReentrancyAttacker](src/25_ReentrancyEther.sol#L56-L80)\n\t- [ReentrancyAttacker](src/45_ReentrancyCross.sol#L57-L79)\n",
+		"first_markdown_element": "src/25_ReentrancyEther.sol#L56-L80",
+		"id": "68838145f2c1d71281beb6499ac1b8438748300778c0ad4fd22d4f8800446405",
+		"check": "name-reused",
+		"impact": "High",
+		"confidence": "High"
+	},
+	{
+		"elements": [
+			{
+				"type": "contract",
+				"name": "ReentrancyVictim",
+				"source_mapping": {
+					"start": 956,
+					"length": 813,
+					"filename_relative": "src/25_ReentrancyEther.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+					"filename_short": "src/25_ReentrancyEther.sol",
+					"is_dependency": false,
+					"lines": [
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54
+					],
+					"starting_column": 1,
+					"ending_column": 2,
+					"_ext_source_hash": "45bb48bbd92438fcb59d464af7275921"
+				}
+			},
+			{
+				"type": "contract",
+				"name": "ReentrancyVictim",
+				"source_mapping": {
+					"start": 424,
+					"length": 1090,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54,
+						55
+					],
+					"starting_column": 1,
+					"ending_column": 2,
+					"_ext_source_hash": "a8a2d872c3736b2eda60a1998273e0c6"
+				}
+			}
+		],
+		"description": "ReentrancyVictim is re-used:\n\t- ReentrancyVictim (src/25_ReentrancyEther.sol#29-54)\n\t- ReentrancyVictim (src/45_ReentrancyCross.sol#17-55)\n",
+		"markdown": "ReentrancyVictim is re-used:\n\t- [ReentrancyVictim](src/25_ReentrancyEther.sol#L29-L54)\n\t- [ReentrancyVictim](src/45_ReentrancyCross.sol#L17-L55)\n",
+		"first_markdown_element": "src/25_ReentrancyEther.sol#L29-L54",
+		"id": "69a2477f463134988d2e4807305384a7bd40512acea3318d1675d6d3d80ce906",
+		"check": "name-reused",
+		"impact": "High",
+		"confidence": "High"
+	},
+	{
+		"elements": [
+			{
+				"type": "function",
+				"name": "withdrawAllMyDeposit",
+				"source_mapping": {
+					"start": 1213,
+					"length": 554,
+					"filename_relative": "src/25_ReentrancyEther.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+					"filename_short": "src/25_ReentrancyEther.sol",
+					"is_dependency": false,
+					"lines": [
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53
+					],
+					"starting_column": 5,
+					"ending_column": 6,
+					"_ext_source_hash": "b8db81a019a6e8bf8c05388833f7d322"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "contract",
+						"name": "ReentrancyVictim",
+						"source_mapping": {
+							"start": 956,
+							"length": 813,
+							"filename_relative": "src/25_ReentrancyEther.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+							"filename_short": "src/25_ReentrancyEther.sol",
+							"is_dependency": false,
+							"lines": [
+								29,
+								30,
+								31,
+								32,
+								33,
+								34,
+								35,
+								36,
+								37,
+								38,
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53,
+								54
+							],
+							"starting_column": 1,
+							"ending_column": 2
+						}
+					},
+					"signature": "withdrawAllMyDeposit()"
+				}
+			},
+			{
+				"type": "node",
+				"name": "(success) = msg.sender.call{value: userBalance}()",
+				"source_mapping": {
+					"start": 1510,
+					"length": 57,
+					"filename_relative": "src/25_ReentrancyEther.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+					"filename_short": "src/25_ReentrancyEther.sol",
+					"is_dependency": false,
+					"lines": [
+						47
+					],
+					"starting_column": 9,
+					"ending_column": 66,
+					"_ext_source_hash": "a462a084885f8a60a4232fa5d12e4b3e"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "function",
+						"name": "withdrawAllMyDeposit",
+						"source_mapping": {
+							"start": 1213,
+							"length": 554,
+							"filename_relative": "src/25_ReentrancyEther.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+							"filename_short": "src/25_ReentrancyEther.sol",
+							"is_dependency": false,
+							"lines": [
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53
+							],
+							"starting_column": 5,
+							"ending_column": 6
+						},
+						"type_specific_fields": {
+							"parent": {
+								"type": "contract",
+								"name": "ReentrancyVictim",
+								"source_mapping": {
+									"start": 956,
+									"length": 813,
+									"filename_relative": "src/25_ReentrancyEther.sol",
+									"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+									"filename_short": "src/25_ReentrancyEther.sol",
+									"is_dependency": false,
+									"lines": [
+										29,
+										30,
+										31,
+										32,
+										33,
+										34,
+										35,
+										36,
+										37,
+										38,
+										39,
+										40,
+										41,
+										42,
+										43,
+										44,
+										45,
+										46,
+										47,
+										48,
+										49,
+										50,
+										51,
+										52,
+										53,
+										54
+									],
+									"starting_column": 1,
+									"ending_column": 2
+								}
+							},
+							"signature": "withdrawAllMyDeposit()"
+						}
+					}
+				},
+				"additional_fields": {
+					"underlying_type": "external_calls"
+				}
+			},
+			{
+				"type": "node",
+				"name": "balances[msg.sender] = 0",
+				"source_mapping": {
+					"start": 1736,
+					"length": 24,
+					"filename_relative": "src/25_ReentrancyEther.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+					"filename_short": "src/25_ReentrancyEther.sol",
+					"is_dependency": false,
+					"lines": [
+						52
+					],
+					"starting_column": 9,
+					"ending_column": 33,
+					"_ext_source_hash": "d3f38d1477d8e1f1d62f7dd28ed44f03"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "function",
+						"name": "withdrawAllMyDeposit",
+						"source_mapping": {
+							"start": 1213,
+							"length": 554,
+							"filename_relative": "src/25_ReentrancyEther.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+							"filename_short": "src/25_ReentrancyEther.sol",
+							"is_dependency": false,
+							"lines": [
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53
+							],
+							"starting_column": 5,
+							"ending_column": 6
+						},
+						"type_specific_fields": {
+							"parent": {
+								"type": "contract",
+								"name": "ReentrancyVictim",
+								"source_mapping": {
+									"start": 956,
+									"length": 813,
+									"filename_relative": "src/25_ReentrancyEther.sol",
+									"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+									"filename_short": "src/25_ReentrancyEther.sol",
+									"is_dependency": false,
+									"lines": [
+										29,
+										30,
+										31,
+										32,
+										33,
+										34,
+										35,
+										36,
+										37,
+										38,
+										39,
+										40,
+										41,
+										42,
+										43,
+										44,
+										45,
+										46,
+										47,
+										48,
+										49,
+										50,
+										51,
+										52,
+										53,
+										54
+									],
+									"starting_column": 1,
+									"ending_column": 2
+								}
+							},
+							"signature": "withdrawAllMyDeposit()"
+						}
+					}
+				},
+				"additional_fields": {
+					"underlying_type": "variables_written",
+					"variable_name": "balances"
+				}
+			}
+		],
+		"description": "Reentrancy in ReentrancyVictim.withdrawAllMyDeposit() (src/25_ReentrancyEther.sol#39-53):\n\tExternal calls:\n\t- (success) = msg.sender.call{value: userBalance}() (src/25_ReentrancyEther.sol#47)\n\tState variables written after the call(s):\n\t- balances[msg.sender] = 0 (src/25_ReentrancyEther.sol#52)\n\tReentrancyVictim.balances (src/25_ReentrancyEther.sol#33) can be used in cross function reentrancies:\n\t- ReentrancyVictim.balances (src/25_ReentrancyEther.sol#33)\n\t- ReentrancyVictim.deposit() (src/25_ReentrancyEther.sol#35-37)\n\t- ReentrancyVictim.withdrawAllMyDeposit() (src/25_ReentrancyEther.sol#39-53)\n",
+		"markdown": "Reentrancy in [ReentrancyVictim.withdrawAllMyDeposit()](src/25_ReentrancyEther.sol#L39-L53):\n\tExternal calls:\n\t- [(success) = msg.sender.call{value: userBalance}()](src/25_ReentrancyEther.sol#L47)\n\tState variables written after the call(s):\n\t- [balances[msg.sender] = 0](src/25_ReentrancyEther.sol#L52)\n\t[ReentrancyVictim.balances](src/25_ReentrancyEther.sol#L33) can be used in cross function reentrancies:\n\t- [ReentrancyVictim.balances](src/25_ReentrancyEther.sol#L33)\n\t- [ReentrancyVictim.deposit()](src/25_ReentrancyEther.sol#L35-L37)\n\t- [ReentrancyVictim.withdrawAllMyDeposit()](src/25_ReentrancyEther.sol#L39-L53)\n",
+		"first_markdown_element": "src/25_ReentrancyEther.sol#L39-L53",
+		"id": "c6486af7cdf05fc0a8415a7a4c757dce65866d0c0c2a28652dd0ec10c3c1a33d",
+		"check": "reentrancy-eth",
+		"impact": "High",
+		"confidence": "Medium"
+	},
+	{
+		"elements": [
+			{
+				"type": "function",
+				"name": "withdraw",
+				"source_mapping": {
+					"start": 1026,
+					"length": 485,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53
+					],
+					"starting_column": 5,
+					"ending_column": 6,
+					"_ext_source_hash": "aafa7307c8e1e913910ebf2bd3ec0757"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "contract",
+						"name": "ReentrancyVictim",
+						"source_mapping": {
+							"start": 424,
+							"length": 1090,
+							"filename_relative": "src/45_ReentrancyCross.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+							"filename_short": "src/45_ReentrancyCross.sol",
+							"is_dependency": false,
+							"lines": [
+								17,
+								18,
+								19,
+								20,
+								21,
+								22,
+								23,
+								24,
+								25,
+								26,
+								27,
+								28,
+								29,
+								30,
+								31,
+								32,
+								33,
+								34,
+								35,
+								36,
+								37,
+								38,
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53,
+								54,
+								55
+							],
+							"starting_column": 1,
+							"ending_column": 2
+						}
+					},
+					"signature": "withdraw()"
+				}
+			},
+			{
+				"type": "node",
+				"name": "(success) = msg.sender.call{value: userBalance}()",
+				"source_mapping": {
+					"start": 1254,
+					"length": 57,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						47
+					],
+					"starting_column": 9,
+					"ending_column": 66,
+					"_ext_source_hash": "a462a084885f8a60a4232fa5d12e4b3e"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "function",
+						"name": "withdraw",
+						"source_mapping": {
+							"start": 1026,
+							"length": 485,
+							"filename_relative": "src/45_ReentrancyCross.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+							"filename_short": "src/45_ReentrancyCross.sol",
+							"is_dependency": false,
+							"lines": [
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53
+							],
+							"starting_column": 5,
+							"ending_column": 6
+						},
+						"type_specific_fields": {
+							"parent": {
+								"type": "contract",
+								"name": "ReentrancyVictim",
+								"source_mapping": {
+									"start": 424,
+									"length": 1090,
+									"filename_relative": "src/45_ReentrancyCross.sol",
+									"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+									"filename_short": "src/45_ReentrancyCross.sol",
+									"is_dependency": false,
+									"lines": [
+										17,
+										18,
+										19,
+										20,
+										21,
+										22,
+										23,
+										24,
+										25,
+										26,
+										27,
+										28,
+										29,
+										30,
+										31,
+										32,
+										33,
+										34,
+										35,
+										36,
+										37,
+										38,
+										39,
+										40,
+										41,
+										42,
+										43,
+										44,
+										45,
+										46,
+										47,
+										48,
+										49,
+										50,
+										51,
+										52,
+										53,
+										54,
+										55
+									],
+									"starting_column": 1,
+									"ending_column": 2
+								}
+							},
+							"signature": "withdraw()"
+						}
+					}
+				},
+				"additional_fields": {
+					"underlying_type": "external_calls"
+				}
+			},
+			{
+				"type": "node",
+				"name": "balances[msg.sender] = 0",
+				"source_mapping": {
+					"start": 1480,
+					"length": 24,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						52
+					],
+					"starting_column": 9,
+					"ending_column": 33,
+					"_ext_source_hash": "d3f38d1477d8e1f1d62f7dd28ed44f03"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "function",
+						"name": "withdraw",
+						"source_mapping": {
+							"start": 1026,
+							"length": 485,
+							"filename_relative": "src/45_ReentrancyCross.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+							"filename_short": "src/45_ReentrancyCross.sol",
+							"is_dependency": false,
+							"lines": [
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53
+							],
+							"starting_column": 5,
+							"ending_column": 6
+						},
+						"type_specific_fields": {
+							"parent": {
+								"type": "contract",
+								"name": "ReentrancyVictim",
+								"source_mapping": {
+									"start": 424,
+									"length": 1090,
+									"filename_relative": "src/45_ReentrancyCross.sol",
+									"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+									"filename_short": "src/45_ReentrancyCross.sol",
+									"is_dependency": false,
+									"lines": [
+										17,
+										18,
+										19,
+										20,
+										21,
+										22,
+										23,
+										24,
+										25,
+										26,
+										27,
+										28,
+										29,
+										30,
+										31,
+										32,
+										33,
+										34,
+										35,
+										36,
+										37,
+										38,
+										39,
+										40,
+										41,
+										42,
+										43,
+										44,
+										45,
+										46,
+										47,
+										48,
+										49,
+										50,
+										51,
+										52,
+										53,
+										54,
+										55
+									],
+									"starting_column": 1,
+									"ending_column": 2
+								}
+							},
+							"signature": "withdraw()"
+						}
+					}
+				},
+				"additional_fields": {
+					"underlying_type": "variables_written",
+					"variable_name": "balances"
+				}
+			}
+		],
+		"description": "Reentrancy in ReentrancyVictim.withdraw() (src/45_ReentrancyCross.sol#40-53):\n\tExternal calls:\n\t- (success) = msg.sender.call{value: userBalance}() (src/45_ReentrancyCross.sol#47)\n\tState variables written after the call(s):\n\t- balances[msg.sender] = 0 (src/45_ReentrancyCross.sol#52)\n\tReentrancyVictim.balances (src/45_ReentrancyCross.sol#23) can be used in cross function reentrancies:\n\t- ReentrancyVictim.balances (src/45_ReentrancyCross.sol#23)\n\t- ReentrancyVictim.deposit() (src/45_ReentrancyCross.sol#25-27)\n\t- ReentrancyVictim.transfer(address,uint256) (src/45_ReentrancyCross.sol#29-35)\n\t- ReentrancyVictim.withdraw() (src/45_ReentrancyCross.sol#40-53)\n",
+		"markdown": "Reentrancy in [ReentrancyVictim.withdraw()](src/45_ReentrancyCross.sol#L40-L53):\n\tExternal calls:\n\t- [(success) = msg.sender.call{value: userBalance}()](src/45_ReentrancyCross.sol#L47)\n\tState variables written after the call(s):\n\t- [balances[msg.sender] = 0](src/45_ReentrancyCross.sol#L52)\n\t[ReentrancyVictim.balances](src/45_ReentrancyCross.sol#L23) can be used in cross function reentrancies:\n\t- [ReentrancyVictim.balances](src/45_ReentrancyCross.sol#L23)\n\t- [ReentrancyVictim.deposit()](src/45_ReentrancyCross.sol#L25-L27)\n\t- [ReentrancyVictim.transfer(address,uint256)](src/45_ReentrancyCross.sol#L29-L35)\n\t- [ReentrancyVictim.withdraw()](src/45_ReentrancyCross.sol#L40-L53)\n",
+		"first_markdown_element": "src/45_ReentrancyCross.sol#L40-L53",
+		"id": "d1ef9f4e2a5eaa24848fbdf9a89b254ecc1ea6ab89e0a99bf4606cda92bf81d8",
+		"check": "reentrancy-eth",
+		"impact": "High",
+		"confidence": "Medium"
+	},
+	{
+		"elements": [
+			{
+				"type": "contract",
+				"name": "ReentrancyVictim",
+				"source_mapping": {
+					"start": 424,
+					"length": 1090,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54,
+						55
+					],
+					"starting_column": 1,
+					"ending_column": 2,
+					"_ext_source_hash": "a8a2d872c3736b2eda60a1998273e0c6"
+				}
+			},
+			{
+				"type": "function",
+				"name": "transfer",
+				"source_mapping": {
+					"start": 708,
+					"length": 262,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35
+					],
+					"starting_column": 5,
+					"ending_column": 6,
+					"_ext_source_hash": "312681c1a7667add361514d7c31c4f67"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "contract",
+						"name": "ReentrancyVictim",
+						"source_mapping": {
+							"start": 424,
+							"length": 1090,
+							"filename_relative": "src/45_ReentrancyCross.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+							"filename_short": "src/45_ReentrancyCross.sol",
+							"is_dependency": false,
+							"lines": [
+								17,
+								18,
+								19,
+								20,
+								21,
+								22,
+								23,
+								24,
+								25,
+								26,
+								27,
+								28,
+								29,
+								30,
+								31,
+								32,
+								33,
+								34,
+								35,
+								36,
+								37,
+								38,
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53,
+								54,
+								55
+							],
+							"starting_column": 1,
+							"ending_column": 2
+						}
+					},
+					"signature": "transfer(address,uint256)"
+				}
+			}
+		],
+		"description": "ReentrancyVictim (src/45_ReentrancyCross.sol#17-55) has incorrect ERC20 function interface:ReentrancyVictim.transfer(address,uint256) (src/45_ReentrancyCross.sol#29-35)\n",
+		"markdown": "[ReentrancyVictim](src/45_ReentrancyCross.sol#L17-L55) has incorrect ERC20 function interface:[ReentrancyVictim.transfer(address,uint256)](src/45_ReentrancyCross.sol#L29-L35)\n",
+		"first_markdown_element": "src/45_ReentrancyCross.sol#L17-L55",
+		"id": "86afb699436ff4d60649b1ff05064db8df9b123362dc841d50e5ec3bbde3ca2b",
+		"check": "erc20-interface",
+		"impact": "Medium",
+		"confidence": "High"
+	},
+	{
+		"elements": [],
+		"description": "solc-0.8.21 is not recommended for deployment\n",
+		"markdown": "solc-0.8.21 is not recommended for deployment\n",
+		"first_markdown_element": "",
+		"id": "d89306001b1fa2ce11230334eb8b32e1ae6da7490b6d2bb2daf2e369120bbacf",
+		"check": "solc-version",
+		"impact": "Informational",
+		"confidence": "High"
+	},
+	{
+		"elements": [
+			{
+				"type": "function",
+				"name": "withdrawAllMyDeposit",
+				"source_mapping": {
+					"start": 1213,
+					"length": 554,
+					"filename_relative": "src/25_ReentrancyEther.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+					"filename_short": "src/25_ReentrancyEther.sol",
+					"is_dependency": false,
+					"lines": [
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53
+					],
+					"starting_column": 5,
+					"ending_column": 6,
+					"_ext_source_hash": "b8db81a019a6e8bf8c05388833f7d322"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "contract",
+						"name": "ReentrancyVictim",
+						"source_mapping": {
+							"start": 956,
+							"length": 813,
+							"filename_relative": "src/25_ReentrancyEther.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+							"filename_short": "src/25_ReentrancyEther.sol",
+							"is_dependency": false,
+							"lines": [
+								29,
+								30,
+								31,
+								32,
+								33,
+								34,
+								35,
+								36,
+								37,
+								38,
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53,
+								54
+							],
+							"starting_column": 1,
+							"ending_column": 2
+						}
+					},
+					"signature": "withdrawAllMyDeposit()"
+				}
+			},
+			{
+				"type": "node",
+				"name": "(success) = msg.sender.call{value: userBalance}()",
+				"source_mapping": {
+					"start": 1510,
+					"length": 57,
+					"filename_relative": "src/25_ReentrancyEther.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+					"filename_short": "src/25_ReentrancyEther.sol",
+					"is_dependency": false,
+					"lines": [
+						47
+					],
+					"starting_column": 9,
+					"ending_column": 66,
+					"_ext_source_hash": "a462a084885f8a60a4232fa5d12e4b3e"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "function",
+						"name": "withdrawAllMyDeposit",
+						"source_mapping": {
+							"start": 1213,
+							"length": 554,
+							"filename_relative": "src/25_ReentrancyEther.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+							"filename_short": "src/25_ReentrancyEther.sol",
+							"is_dependency": false,
+							"lines": [
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53
+							],
+							"starting_column": 5,
+							"ending_column": 6
+						},
+						"type_specific_fields": {
+							"parent": {
+								"type": "contract",
+								"name": "ReentrancyVictim",
+								"source_mapping": {
+									"start": 956,
+									"length": 813,
+									"filename_relative": "src/25_ReentrancyEther.sol",
+									"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/25_ReentrancyEther.sol",
+									"filename_short": "src/25_ReentrancyEther.sol",
+									"is_dependency": false,
+									"lines": [
+										29,
+										30,
+										31,
+										32,
+										33,
+										34,
+										35,
+										36,
+										37,
+										38,
+										39,
+										40,
+										41,
+										42,
+										43,
+										44,
+										45,
+										46,
+										47,
+										48,
+										49,
+										50,
+										51,
+										52,
+										53,
+										54
+									],
+									"starting_column": 1,
+									"ending_column": 2
+								}
+							},
+							"signature": "withdrawAllMyDeposit()"
+						}
+					}
+				}
+			}
+		],
+		"description": "Low level call in ReentrancyVictim.withdrawAllMyDeposit() (src/25_ReentrancyEther.sol#39-53):\n\t- (success) = msg.sender.call{value: userBalance}() (src/25_ReentrancyEther.sol#47)\n",
+		"markdown": "Low level call in [ReentrancyVictim.withdrawAllMyDeposit()](src/25_ReentrancyEther.sol#L39-L53):\n\t- [(success) = msg.sender.call{value: userBalance}()](src/25_ReentrancyEther.sol#L47)\n",
+		"first_markdown_element": "src/25_ReentrancyEther.sol#L39-L53",
+		"id": "0bdfbfdf4de2769e0be592dfa0b7e53fd25494db9c0b0b1700539d0f5afe474b",
+		"check": "low-level-calls",
+		"impact": "Informational",
+		"confidence": "High"
+	},
+	{
+		"elements": [
+			{
+				"type": "function",
+				"name": "withdraw",
+				"source_mapping": {
+					"start": 1026,
+					"length": 485,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53
+					],
+					"starting_column": 5,
+					"ending_column": 6,
+					"_ext_source_hash": "aafa7307c8e1e913910ebf2bd3ec0757"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "contract",
+						"name": "ReentrancyVictim",
+						"source_mapping": {
+							"start": 424,
+							"length": 1090,
+							"filename_relative": "src/45_ReentrancyCross.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+							"filename_short": "src/45_ReentrancyCross.sol",
+							"is_dependency": false,
+							"lines": [
+								17,
+								18,
+								19,
+								20,
+								21,
+								22,
+								23,
+								24,
+								25,
+								26,
+								27,
+								28,
+								29,
+								30,
+								31,
+								32,
+								33,
+								34,
+								35,
+								36,
+								37,
+								38,
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53,
+								54,
+								55
+							],
+							"starting_column": 1,
+							"ending_column": 2
+						}
+					},
+					"signature": "withdraw()"
+				}
+			},
+			{
+				"type": "node",
+				"name": "(success) = msg.sender.call{value: userBalance}()",
+				"source_mapping": {
+					"start": 1254,
+					"length": 57,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						47
+					],
+					"starting_column": 9,
+					"ending_column": 66,
+					"_ext_source_hash": "a462a084885f8a60a4232fa5d12e4b3e"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "function",
+						"name": "withdraw",
+						"source_mapping": {
+							"start": 1026,
+							"length": 485,
+							"filename_relative": "src/45_ReentrancyCross.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+							"filename_short": "src/45_ReentrancyCross.sol",
+							"is_dependency": false,
+							"lines": [
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53
+							],
+							"starting_column": 5,
+							"ending_column": 6
+						},
+						"type_specific_fields": {
+							"parent": {
+								"type": "contract",
+								"name": "ReentrancyVictim",
+								"source_mapping": {
+									"start": 424,
+									"length": 1090,
+									"filename_relative": "src/45_ReentrancyCross.sol",
+									"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+									"filename_short": "src/45_ReentrancyCross.sol",
+									"is_dependency": false,
+									"lines": [
+										17,
+										18,
+										19,
+										20,
+										21,
+										22,
+										23,
+										24,
+										25,
+										26,
+										27,
+										28,
+										29,
+										30,
+										31,
+										32,
+										33,
+										34,
+										35,
+										36,
+										37,
+										38,
+										39,
+										40,
+										41,
+										42,
+										43,
+										44,
+										45,
+										46,
+										47,
+										48,
+										49,
+										50,
+										51,
+										52,
+										53,
+										54,
+										55
+									],
+									"starting_column": 1,
+									"ending_column": 2
+								}
+							},
+							"signature": "withdraw()"
+						}
+					}
+				}
+			}
+		],
+		"description": "Low level call in ReentrancyVictim.withdraw() (src/45_ReentrancyCross.sol#40-53):\n\t- (success) = msg.sender.call{value: userBalance}() (src/45_ReentrancyCross.sol#47)\n",
+		"markdown": "Low level call in [ReentrancyVictim.withdraw()](src/45_ReentrancyCross.sol#L40-L53):\n\t- [(success) = msg.sender.call{value: userBalance}()](src/45_ReentrancyCross.sol#L47)\n",
+		"first_markdown_element": "src/45_ReentrancyCross.sol#L40-L53",
+		"id": "924b85f5d600e568404d3a1fcadf3b85075e1b4f35ec9ea2fb3da38638e79231",
+		"check": "low-level-calls",
+		"impact": "Informational",
+		"confidence": "High"
+	},
+	{
+		"elements": [
+			{
+				"type": "variable",
+				"name": "state",
+				"source_mapping": {
+					"start": 541,
+					"length": 20,
+					"filename_relative": "src/45_ReentrancyCross.sol",
+					"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+					"filename_short": "src/45_ReentrancyCross.sol",
+					"is_dependency": false,
+					"lines": [
+						21
+					],
+					"starting_column": 5,
+					"ending_column": 25,
+					"_ext_source_hash": "236e6410c42d344d86ab955aad087d83"
+				},
+				"type_specific_fields": {
+					"parent": {
+						"type": "contract",
+						"name": "ReentrancyVictim",
+						"source_mapping": {
+							"start": 424,
+							"length": 1090,
+							"filename_relative": "src/45_ReentrancyCross.sol",
+							"filename_absolute": "/Users/stefaniapozzi/Personal/IT/bc/solidity-by-example/hacks/src/45_ReentrancyCross.sol",
+							"filename_short": "src/45_ReentrancyCross.sol",
+							"is_dependency": false,
+							"lines": [
+								17,
+								18,
+								19,
+								20,
+								21,
+								22,
+								23,
+								24,
+								25,
+								26,
+								27,
+								28,
+								29,
+								30,
+								31,
+								32,
+								33,
+								34,
+								35,
+								36,
+								37,
+								38,
+								39,
+								40,
+								41,
+								42,
+								43,
+								44,
+								45,
+								46,
+								47,
+								48,
+								49,
+								50,
+								51,
+								52,
+								53,
+								54,
+								55
+							],
+							"starting_column": 1,
+							"ending_column": 2
+						}
+					}
+				}
+			}
+		],
+		"description": "ReentrancyVictim.state (src/45_ReentrancyCross.sol#21) should be constant \n",
+		"markdown": "[ReentrancyVictim.state](src/45_ReentrancyCross.sol#L21) should be constant \n",
+		"first_markdown_element": "src/45_ReentrancyCross.sol#L21",
+		"id": "06cd1a2314db68f13f3ee55717c69a7a26b9de5870c105953fd5485a1d035078",
+		"check": "constable-states",
+		"impact": "Optimization",
+		"confidence": "High"
+	}
+]

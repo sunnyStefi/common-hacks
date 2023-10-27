@@ -10,5 +10,5 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "hacks 25, 45"
+	git commit -m "hacks 45, crosso"
 	git push origin master
