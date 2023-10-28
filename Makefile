@@ -10,5 +10,8 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "hacks 45, crosso"
+	git commit -m "hacks 45 crossover"
 	git push origin master
+
+install:
+	forge install Openzeppelin/openzeppelin-contracts --no-commit
