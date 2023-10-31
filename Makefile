@@ -10,7 +10,7 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "hacks 45 crossover contract added PokemonGym contract"
+	git commit -m "finished contract 45 - attacker crossover-contract victim,suicidal"
 	git push origin master
 
 install:

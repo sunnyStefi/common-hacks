@@ -20,15 +20,17 @@ contract ReentrancyCrossTest is Test {
         // 1) give ether to test users and attacker
         vm.deal(good_alice, 2 ether);
         vm.deal(good_bob, 2 ether);
-        vm.deal(address(attacker), 1 ether);
+        vm.deal(address(attacker), 2 ether);
 
         // 2) two unaware users deposit 1 ether
         vm.prank(good_alice);
         victimFunction.deposit{value: 1 ether}();
-        victimContract.deposit{value: 1 ether}();
+        victimContract.buyOnePokemon{value: 1 ether}();
         vm.prank(good_bob);
         victimFunction.deposit{value: 1 ether}();
-        victimContract.deposit{value: 1 ether}();
+        victimContract.buyOnePokemon{value: 1 ether}();
+        vm.prank(address(attacker));
+        victimContract.buyOnePokemon{value: 1 ether}();
     }
 
     function test_crossFunctionAttack() public {
@@ -40,8 +42,6 @@ contract ReentrancyCrossTest is Test {
     function test_crossContractAttack() public {
         vm.prank(address(attacker));
         attacker.attack{value: 1 ether}(ReentrancyAttacker.CrossAttackType.CONTRACT);
-        assertEq(
-            attacker.getOkTokenBalance(address(attacker)) + attacker.getOkTokenBalance(address(evil_carl)), 2 ether
-        );
+        assertEq(attacker.getPokemonAmount(address(attacker)) + attacker.getPokemonAmount(address(evil_carl)), 1 );
     }
 }
