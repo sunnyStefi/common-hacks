@@ -5,6 +5,8 @@ pragma solidity ^0.8.18;
  * @notice type 1 MONO-FUNCTION REENTRANCY
  * see contract #45 Reentrancy Ether for type 2 and 3
  *
+ * 1. UNEXPECTED ACTION: Exploitation of state variables through a callback function
+ * 2. BEST PRACTICE: use CEI not CIE 
  * - Manipulation: victim state (balance)
  *
  * - Exploited cycle (victim)
@@ -21,10 +23,6 @@ pragma solidity ^0.8.18;
  * 5) he exploits the fact that a call function will default to a receive/fallback function:
  * he calls another withdraw inside that callback function to keep withdrawing funds
  *
- *
- * - Prevention:
- * 1) CEI instead of CIE -> update the state changes before calling external contracts
- * 2) modifiers
  */
 contract ReentrancyVictim {
     error ReentrancyVictim_balanceIsLow();
