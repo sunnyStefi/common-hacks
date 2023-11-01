@@ -10,7 +10,7 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "finished contract 45 - attacker crossover-contract victim,suicidal"
+	git commit -m "contract 66"
 	git push origin master
 
 install:
