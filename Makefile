@@ -10,7 +10,7 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "contract 66"
+	git commit -m "contract X_DOS, tests"
 	git push origin master
 
 install:

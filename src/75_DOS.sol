@@ -4,7 +4,6 @@ pragma solidity ^0.8.18;
 /**
  * @notice Denial of Service (DOS): make a contract unusable
  * Attacker is the new king but he does not have a fallback function
- * enying to accept the Ether sent from KingOfEther before the new king is set.
  */
 
 contract Victim {
