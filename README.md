@@ -36,8 +36,11 @@ While writing potential victim contracts:
 
 **#47 TxOrigin**
 
-1. UNEXPECTED ACTION: Exploitation of state variables through a callback function
-2. BEST PRACTICE: Use msg.sender instead of tx.origin for authorization
+1. ACTORS: Victim user, Victim contract, Attacker user, Attacker contract
+2. WEAK SITUATION: the onlyOwner modifier is tx.origin
+3. UNEXPECTED ACTION: phishing. The user calls the attacker's function 
+4. RESULT OF UNEXPECTED ACTION: the attacker's function checks the tx.origin (the user), ingnoring that the one who called the function (msg.sender) is the attacker
+5. BEST PRACTICE: use msg.sender instead of tx.origin for authorization
 
 
 **#66 Randomness with blockhash and timestamp**
@@ -47,8 +50,23 @@ While writing potential victim contracts:
 
 **#75 DOS**
 
-1. WEAK SITUATION: contract logic. It sends money back to the user with `call`.
+1. WEAK SITUATION: contract logic. It sends money back to the user with `call` then it executes state modifications.
 2. UNEXPECTED ACTION: the attacker can invoke the same function that contains call but he does not have a fallback function.
 3. RESULT OF UNEXPECTED ACTION: Performing the function that contains `call` will always raise an error: `call` cannot send funds to the next sender. The logic after the call function cannot be executed anymore.
 3. BEST PRACTICE: CEI and contract logic. If CEI is impossible, do not mix code that send funds inside other logic, but let the user withdraw separately.
 
+**#X Hide Malicious code with External Contract**
+
+1. ACTORS: Victim contract, Victim user, Attacker Contract, Neutral Contract
+2. WEAK SITUATION: Victim contract uses an address in a constructor to instantiate a Neutral contract, then it calls a function in that contract
+3. UNEXPECTED ACTION: An attacker contract is made as an exact copy of Victim contract, except of the behaviour of the called function. Then, the Victim User deploys the contract with that malicious address. (Or the contracts are deployed at the same address).
+4. RESULT OF UNEXPECTED ACTION: the function now points to the Attacker Contract's one, and performs the malicious code.
+5. BEST PRACTICE: Initialize a contract in the params with the correct type and make the address of the external contract public.
+
+**# TEMPLATE**
+
+1. ACTORS:
+2. WEAK SITUATION:
+3. UNEXPECTED ACTION:
+4. RESULT OF UNEXPECTED ACTION:
+5. BEST PRACTICE:
