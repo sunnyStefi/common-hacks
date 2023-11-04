@@ -63,6 +63,14 @@ While writing potential victim contracts:
 4. RESULT OF UNEXPECTED ACTION: the function now points to the Attacker Contract's one, and performs the malicious code.
 5. BEST PRACTICE: Initialize a contract in the params with the correct type and make the address of the external contract public.
 
+**#Y Displacement Frontrunning**
+
+1. ACTORS: Victim user, Attacker user
+2. WEAK SITUATION: The victim user submits a tx that gets money by a contract
+3. UNEXPECTED ACTION: The Attacker puts more gas inside his tx and he gets priority inside the mempool. He outbids the user.
+4. RESULT OF UNEXPECTED ACTION: the attacker receives the money that was supposed to be sent to the User
+5. BEST PRACTICE: Minimizing the relevance of transaction ordering or timing inside the contract logic. Batch auctions implementations, defining a maximum or minimum acceptable price range on a trade, commit and reveal scheme. Submarine send
+
 **# TEMPLATE**
 
 1. ACTORS:
