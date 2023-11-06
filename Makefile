@@ -10,7 +10,7 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "frontrunning, tests"
+	git commit -m "bypass contract size"
 	git push origin master
 
 install:

@@ -71,6 +71,14 @@ While writing potential victim contracts:
 4. RESULT OF UNEXPECTED ACTION: the attacker receives the money that was supposed to be sent to the User
 5. BEST PRACTICE: Minimizing the relevance of transaction ordering or timing inside the contract logic. Batch auctions implementations, defining a maximum or minimum acceptable price range on a trade, commit and reveal scheme. Submarine send
 
+**#Z Bypass Contract Size**
+
+1. ACTORS: Victim contract, Attacker contract
+2. WEAK SITUATION: Victim contract uses contract size (extcodesize) to check if a function can be performed
+3. UNEXPECTED ACTION: Attacker calls the weak function inside the constructor, where its size is still 0
+4. RESULT OF UNEXPECTED ACTION: Attacker can impersonate EOA inside the costructor
+5. BEST PRACTICE: 
+
 **# TEMPLATE**
 
 1. ACTORS:
