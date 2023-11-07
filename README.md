@@ -79,6 +79,14 @@ While writing potential victim contracts:
 4. RESULT OF UNEXPECTED ACTION: Attacker can impersonate EOA inside the costructor
 5. BEST PRACTICE: 
 
+**#W Signature Replay**
+
+1. ACTORS: Victim Wallet, Attacker user
+2. WEAK SITUATION: the wallet does not encode the signature with nonce
+3. UNEXPECTED ACTION: attacker will send the tx multiple times
+4. RESULT OF UNEXPECTED ACTION: drained funds
+5. BEST PRACTICE: always encode signature with nonce
+
 **# TEMPLATE**
 
 1. ACTORS:
