@@ -32,6 +32,25 @@ contract SignatureReplayTest is Test {
         victim.deposit{value: 1 ether}();
     }
 
+    function test_correctSignatureNonce() public {
+        vm.startPrank(alice);
+        uint256 nonce1 = vm.getNonce(alice);
+        bytes32 hash = keccak256(abi.encodePacked(bob, AMOUNT, nonce1)).toEthSignedMessageHash();
+        (uint8 v1, bytes32 r1, bytes32 s1) = vm.sign(alicePk, hash);
+        bytes memory aliceSignature = abi.encodePacked(r1, s1, v1);
+        vm.stopPrank();
+        vm.startPrank(bob);
+        (uint8 v2, bytes32 r2, bytes32 s2) = vm.sign(bobPk, hash);
+        bytes memory bobSignature = abi.encodePacked(r2, s2, v2);
+        vm.stopPrank();
+        bytes[2] memory ownersSig = [aliceSignature, bobSignature];
+
+        vm.startPrank(alice);
+        victim.transferStrong(bob, 0.1 ether, nonce1, ownersSig);
+        vm.stopPrank();
+        assertEq(bob.balance, 0.1 ether);
+    }
+
     function test_attackSignatureReplay() public {
         vm.startPrank(alice);
         bytes32 hash = keccak256(abi.encodePacked(bob, AMOUNT)).toEthSignedMessageHash();
@@ -43,10 +62,9 @@ contract SignatureReplayTest is Test {
         bytes memory bobSignature = abi.encodePacked(r2, s2, v2);
         vm.stopPrank();
         bytes[2] memory ownersSig = [aliceSignature, bobSignature];
-        
-        vm.prank(alice);
-        victim.transfer(bob, 0.1 ether, ownersSig);
-        victim.transfer(bob, 0.1 ether, ownersSig);
+
+        victim.transferWeak(bob, 0.1 ether, ownersSig);
+        victim.transferWeak(bob, 0.1 ether, ownersSig);
         assertEq(bob.balance, 0.2 ether);
     }
 }

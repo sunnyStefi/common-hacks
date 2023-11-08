@@ -3,7 +3,15 @@ pragma solidity ^0.8.20;
 
 /**
  * @notice Victim is multisig wallet
- * Same sig can be use multiple times if nonce is not used
+ * ECDSA recover and toEthSignedMessageHash are used to 
+ * verify that a MESSAGE was signed by the holder of pk
+ * 
+ * User:
+ * 1. txHash = keccak(abi.encodePacked(_to, _amount, _nonce))
+ * 2. signature = pk + txHash.toEthSignedMessageHash()
+ * Verify:
+ * 3. owner = txHash.toEthSignedMessageHash().recover(signature)
+ * 
  */
 
 // import "github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.5/contracts/utils/cryptography/ECDSA.sol";
@@ -22,7 +30,15 @@ contract Victim {
 
     function deposit() external payable {}
 
-    function transfer(address _to, uint256 _amount, bytes[2] memory _sigs) external {
+    function transferStrong(address _to, uint256 _amount, uint256 _nonce, bytes[2] memory _sigs) external {
+        bytes32 txHash = keccak256(abi.encodePacked(_to, _amount, _nonce));
+        require(_checkSigs(_sigs, txHash), "invalid sig");
+
+        (bool sent,) = _to.call{value: _amount}("");
+        require(sent, "Failed to send Ether");
+    }
+
+    function transferWeak(address _to, uint256 _amount, bytes[2] memory _sigs) external {
         bytes32 txHash = keccak256(abi.encodePacked(_to, _amount));
         require(_checkSigs(_sigs, txHash), "invalid sig");
 

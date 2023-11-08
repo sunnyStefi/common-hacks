@@ -82,10 +82,10 @@ While writing potential victim contracts:
 **#W Signature Replay**
 
 1. ACTORS: Victim Wallet, Attacker user
-2. WEAK SITUATION: the wallet does not encode the signature with nonce
+2. WEAK SITUATION: the wallet does not encode the signature with nonce txHash = keccak(abi.encodePacked(_to, _amount))
 3. UNEXPECTED ACTION: attacker will send the tx multiple times
-4. RESULT OF UNEXPECTED ACTION: drained funds
-5. BEST PRACTICE: always encode signature with nonce
+4. RESULT OF UNEXPECTED ACTION: drain funds
+5. BEST PRACTICE: always encode signature with nonce txHash = keccak(abi.encodePacked(_to, _amount, _nonce))
 
 **# TEMPLATE**
 
