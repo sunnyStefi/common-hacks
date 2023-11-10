@@ -1,8 +1,8 @@
-# Solidity by example Hacks
+# Common Hacks
 
 This repo is a recap for 
 - all (92) Slither Detection Hacks (in progress)
-- Hacks listed inside Solidity by Example (in progress)
+- Hacks listed inside Solidity by Example
 - not So smart contract (to do)
 
 Each attacked vulnerability is reproduced inside its contract name and Slither Detactor Number.
