@@ -10,7 +10,7 @@ remove-add:
 
 push:
 	git add .
-	git commit -m "bypass contract size"
+	git commit -m "readme"
 	git push origin master
 
 install:

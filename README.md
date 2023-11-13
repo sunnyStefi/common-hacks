@@ -1,6 +1,7 @@
 # Common Hacks
 
-This repo is a recap for 
+This repo is a recap for
+
 - all (92) Slither Detection Hacks (in progress)
 - Hacks listed inside Solidity by Example
 - not So smart contract (to do)
@@ -23,11 +24,11 @@ While writing potential victim contracts:
 1. UNEXPECTED ACTION: Overwrite a victim state variable thorugh an external stateful library
 2. BEST PRACTICE: Use stateless libraries
 
-**#21 Delegatecall Loop** 
+**#21 Delegatecall Loop**
 
-1. UNEXPECTED ACTION: msg.value 
+1. UNEXPECTED ACTION: msg.value
 2. BEST PRACTICE: The called function does not have payable - do not use msg.value (similar to suicidal address(this.balance))
---TO CLARIFY 9looks identical to # 20--
+   --TO CLARIFY 9looks identical to # 20--
 
 **#25 #45 Reentrancy**
 
@@ -38,10 +39,9 @@ While writing potential victim contracts:
 
 1. ACTORS: Victim user, Victim contract, Attacker user, Attacker contract
 2. WEAK SITUATION: the onlyOwner modifier is tx.origin
-3. UNEXPECTED ACTION: phishing. The user calls the attacker's function 
+3. UNEXPECTED ACTION: phishing. The user calls the attacker's function
 4. RESULT OF UNEXPECTED ACTION: the attacker's function checks the tx.origin (the user), ingnoring that the one who called the function (msg.sender) is the attacker
 5. BEST PRACTICE: use msg.sender instead of tx.origin for authorization
-
 
 **#66 Randomness with blockhash and timestamp**
 
@@ -53,7 +53,7 @@ While writing potential victim contracts:
 1. WEAK SITUATION: contract logic. It sends money back to the user with `call` then it executes state modifications.
 2. UNEXPECTED ACTION: the attacker can invoke the same function that contains call but he does not have a fallback function.
 3. RESULT OF UNEXPECTED ACTION: Performing the function that contains `call` will always raise an error: `call` cannot send funds to the next sender. The logic after the call function cannot be executed anymore.
-3. BEST PRACTICE: CEI and contract logic. If CEI is impossible, do not mix code that send funds inside other logic, but let the user withdraw separately.
+4. BEST PRACTICE: CEI and contract logic. If CEI is impossible, do not mix code that send funds inside other logic, but let the user withdraw separately.
 
 **#X Hide Malicious code with External Contract**
 
@@ -77,20 +77,33 @@ While writing potential victim contracts:
 2. WEAK SITUATION: Victim contract uses contract size (extcodesize) to check if a function can be performed
 3. UNEXPECTED ACTION: Attacker calls the weak function inside the constructor, where its size is still 0
 4. RESULT OF UNEXPECTED ACTION: Attacker can impersonate EOA inside the costructor
-5. BEST PRACTICE: 
+5. BEST PRACTICE:
 
 **#W Signature Replay**
 
 1. ACTORS: Victim Wallet, Attacker user
-2. WEAK SITUATION: the wallet does not encode the signature with nonce txHash = keccak(abi.encodePacked(_to, _amount))
+2. WEAK SITUATION: the wallet does not encode the signature with nonce txHash = keccak(abi.encodePacked(\_to, \_amount))
 3. UNEXPECTED ACTION: attacker will send the tx multiple times
 4. RESULT OF UNEXPECTED ACTION: drain funds
-5. BEST PRACTICE: always encode signature with nonce txHash = keccak(abi.encodePacked(_to, _amount, _nonce))
+5. BEST PRACTICE: always encode signature with nonce txHash = keccak(abi.encodePacked(\_to, \_amount, \_nonce))
 
-**# TEMPLATE**
-
-1. ACTORS:
-2. WEAK SITUATION:
-3. UNEXPECTED ACTION:
-4. RESULT OF UNEXPECTED ACTION:
-5. BEST PRACTICE:
+## List of Hacks Summary
+   
+ID | Name | Domain | Weak target | Unexpected Action | Good practices | Hack type | Relevance | Source
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+SL1 | abiencoderv2-array | solc | abi.encode | Unexpected abi.encode behaviour | solc ≥0.5.10 | solc malfunctioning || SLither
+SL2 | arbitrary-send-erc20 | erc20 | transferFrom | "transferFrom(attacker, to, amount)" | "transferFrom(msg.sender, to, amount)" | victim logic exploit|| SLither
+SL3 | array-by-reference | function modifiers, storage | storage kw | Bad contract usage of storage and memory by the Victim | 1. make storage params internal        | "victim bad prevention, victim error" |
+SL4 | encode-packed-collision| dynamic types, user input | abi.encodePacked | Attacker can fake collision since abi.encodePacked("a","lice")==abi.encodePacked("ali","ce") | Do not use more than 1 dynamic type for abi.encodePacked | Solidity ambiguosity, Solidity warning, Victim bad prevention |
+SL5 | incorrect-shift | assembly | shl, shr | Inverting the order of parameters | Check order of assembly function params  | victim error |
+SL6 | multiple-constructors | solc v0.4.22 | constructor | First constructor takes precedence over the others         | Use 1 constructor                       | victim error  |
+SL7 | name-reused | solc | contract | 2 contracts with the same name in the codebase: 1 will not compile | Always name contracts differently      | victim error                    | Search for the compiler version that’s valid, then write them
+SL8 | protected-vars | natspec | @custom:security | The protected variable is accessible publicly               | Beware of its visibility inside functions | victim error                    |
+SL9 | public-mappings-nested| solc | mapping | A public mapping with nested structures returned incorrect values | solc ≥ 0.5                              | solc malfunctioning |
+SL10 | rtlo | params | unicode U+202E | A param with a special char is sent from user → compromises victim logic | Special control characters must not be allowed | victim logic exploit
+SL11 | shadowing-state | state variables | inheriting contract | Name shadowing | Be aware of parent’s name               | victim error                    | Already detected by the compiler
+SL12 | suicidal | receive unintended money | selfdestruct | Attacker can self-destruct and break contract logic | State vars are called to deposit and check balances | victim logic exploit
+SL13 | uninitialized-state | state variables | initialization | Wrong assignment | Explicitly set it | victim error
+SL14 | uninitialized-storage | state variables | initialization | Unassigned storage struct can override state storage | Explicitly set it | victim error | Already detected by the compiler
+SL15 | unprotected-upgrade | proxy | initialization | Bad use of initialized function: 1. can be called more than once 2. by its ancestors | Use OpenZeppelin modifier | victim error
+SL16 | codex | ai | | Use it to find vulnerabilities | | Not an hack
